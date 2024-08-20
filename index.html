@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    
+    function getComputerChoice(){
+        let random = Math.random();
+        if (random <= 0.33){
+            return 'rock';
+        } else if (random > 0.33 && random <=0.66){
+            return 'paper';
+        } else {
+            return 'scissors';
+        }
+    }
+
+    function getHumanChoice(){
+        let choice = '';
+        while (choice != 'rock' && choice != 'paper' &&  choice != 'scissors'){
+            choice = prompt('Type "rock", "paper" or "scissors" to make your choice.')    
+            if(!(choice === null))
+                choice = choice.toLowerCase();
+            if (choice != 'rock' && choice != 'paper' &&  choice != 'scissors'){
+                console.log("Please, type a valid choice.")
+            }
+        }
+        return choice;
+    }
+
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(computerChoice, playerChoice){
+        console.log("Computer played " + computerChoice)
+        console.log("Human played " + playerChoice)
+        if (computerChoice == 'rock' && playerChoice == 'scissors'){
+            computerScore += 1;
+            console.log("You lose! Rock beats Scissors");
+        } 
+        else if (computerChoice == 'rock' && playerChoice == 'paper'){
+            humanScore += 1;
+            console.log("You won! Paper beats rock");
+        }
+        else if (computerChoice == 'paper' && playerChoice == 'rock'){
+            computerScore += 1;
+            console.log("You lose! Paper beats rock")
+        }
+        else if (computerChoice == 'paper' && playerChoice == 'scissors'){
+            humanScore += 1
+            console.log("You won! Scissors beats paper")
+        }
+        else if (computerChoice == 'scissors' && playerChoice == 'paper'){
+            computerScore += 1;
+            console.log("You lose! Scissors beats paper")
+        }
+        else if (computerChoice == 'scissors' && playerChoice == 'rock'){
+            humanScore += 1
+            console.log("You won! Rock beats scissors")
+        }
+        else if (computerChoice ==  playerChoice){
+            console.log("It's a tie!")
+        }
+    }
+
+    function playGame(){
+        for (let i = 0; i < 5; i++){
+            computerChoice = getComputerChoice()
+            playerChoice = getHumanChoice()
+            playRound(computerChoice, playerChoice);
+            console.log("Computer score: " + computerScore)
+            console.log("Player score: " + humanScore)
+        }
+    }
+    
+    playGame()
+    
+  </script>
+</body>
+</html>
